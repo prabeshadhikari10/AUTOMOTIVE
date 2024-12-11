@@ -12,26 +12,30 @@ class CategoryController extends Controller
     function createCategory(Request $request)
     {
         $category = new Category();
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->status = $request->status == true ? '1' : '0';
+        if ($request->filled('name')) {
+            $category->name = $request->name;
+        } else {
+            return back()->with('message', 'category name is required.');
+        }
         $category->save();
-        return redirect('/admin-category');
+        return redirect('/admin-category')->with('message1', 'category added successfully.');;
     }
 
     function updateCategory($id, Request $request)
     {
         $category = Category::find($id);
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->status = $request->status == true ? '1' : '0';
+        if ($request->filled('name')) {
+            $category->name = $request->name;
+        } else {
+            return back()->with('message', 'category name is required.');
+        }
         $category->update();
-        return redirect('/admin-category');
+        return redirect('/admin-category')->with('message1', 'category updated successfully.');
     }
     function deleteCategory($id)
     {
         $category = Category::find($id);
         $category->delete();
-        return back();
+        return back()->with('message1', 'category deleted successfully.');
     }
 }

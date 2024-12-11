@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('description');
-            $table->integer('status')->default('0')->comment('0=visible, 1=hidden');
             $table->timestamps();
         });
     }

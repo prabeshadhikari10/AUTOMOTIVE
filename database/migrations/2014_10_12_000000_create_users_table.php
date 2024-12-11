@@ -19,8 +19,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('role')->default(2)->comment('1=Admin, 2=User');
-            $table->integer('status')->default(0)->comment('0=unverified, 1=verified');
+            $table->integer('status')->default(0)->comment('0=unverified, 1=verified, 2=semi-verified');
+            $table->integer('block')->default(0)->comment('0=unblocked, 1=blocked');
             $table->string('password');
+            $table->string('profile')->nullable();
+            $table->string('bio')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

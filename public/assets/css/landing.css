@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 /*-----------------------------------*\
@@ -27,10 +31,10 @@
     --lavender-blush: hsl(336, 35%, 92%);
     --primary-color: #39b779;
     --columbia-blue: hsl(204, 92%, 90%);
-    --secondary-color: #c6cfc1;
+    --secondary-color: white;
     --alice-blue-2: hsl(216, 75%, 97%);
     --alice-blue-3: hsl(216, 38%, 95%);
-    --alice-blue-4: hsl(217, 33%, 92%);
+    --alice-blue-4: #f4f4f4;
     --independence: hsl(219, 21%, 39%);
     --deep-cerise: hsl(329, 63%, 52%);
     --eerie-black: hsl(210, 11%, 15%);
@@ -45,7 +49,7 @@
     --manatee: hsl(219, 14%, 60%);
     --white: hsl(0, 0%, 100%);
   
-    --gradient: linear-gradient(to top, var(--alice-blue-2), var(--alice-blue-3));
+    --gradient:#fbfbfb;
   
     /**
      * typography
@@ -202,7 +206,7 @@
   }
   
   body {
-    background: var(--secondary-color);
+    background: var(--secondary-color) !important;
     overflow-x: hidden;
   }
   
@@ -234,7 +238,7 @@
   
   .btn {
     position: relative;
-    background: var(--background, var(--primary-color));
+    background: var(--background, var(--primary-color)) !important;
     color: var(--color, var(--white));
     min-width: var(--width, 40px);
     min-height: var(--height, 40px);
@@ -302,7 +306,7 @@
   .header-contact { display: none; }
   
   .header {
-    background: var(--secondary-color);
+    background: var(--secondary-color) !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -349,15 +353,15 @@
   
   .nav-toggle-btn span.three { transform: scaleX(0.4); }
   
-  .nav-toggle-btn:is(:hover, :focus) span { background: var(--primary-color); }
+  .nav-toggle-btn:is(:hover, :focus) span { background: var(--primary-color) !important; }
   
   .nav-toggle-btn.active span {
     transform: scaleX(1);
-    background: var(--primary-color);
+    background: var(--primary-color) !important;
   }
   
   .navbar {
-    background: var(--secondary-color);
+    background: var(--secondary-color) !important;
     position: fixed;
     top: 70px;
     bottom: 0;
@@ -385,7 +389,7 @@
     margin-bottom: 15px;
   }
   
-  .navbar-link:is(:hover, :focus) { color: var(--primary-color); }
+  .navbar-link:is(:hover, :focus) { color: var(--primary-color) !important; }
   
   .overlay {
     position: fixed;
@@ -453,7 +457,7 @@
     transition: var(--transition);
   }
   
-  .input-field:focus { outline-color: var(--primary-color); }
+  .input-field:focus { outline-color: var(--primary-color) !important; }
   
   .input-field::placeholder { color: var(--independence); }
   
@@ -498,7 +502,7 @@
     transition: var(--transition);
   }
   
-  .featured-car-link:is(:hover, :focus) ion-icon { color: var(--primary-color); }
+  .featured-car-link:is(:hover, :focus) ion-icon { color: var(--primary-color) !important; }
   
   .featured-car-list {
     display: grid;
@@ -546,7 +550,7 @@
     text-overflow: ellipsis;
   }
   
-  .featured-car-card .card-title > a:is(:hover, :focus) { color: var(--primary-color); }
+  .featured-car-card .card-title > a:is(:hover, :focus) { color: var(--primary-color) !important; }
   
   .featured-car-card .year {
     font-family: var(--ff-nunito);
@@ -574,7 +578,7 @@
   
   .featured-car-card .card-list-item ion-icon {
     font-size: 20px;
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
     --ionicon-stroke-width: 38px;
   }
   
@@ -1008,6 +1012,7 @@
       min-width: max-content;
       padding-inline: 15px;
     }
+
   
   }
   

@@ -42,4 +42,27 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function mykyc(){
+        return $this->hasOne(MyKYC::class);
+    }
+
+    public function vehicle(){
+        return $this->hasmany(Vehicle::class);
+    }
+
+    public function booking(){
+        return $this->hasOne(Booking::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function rating(){
+        return $this->hasMany(Rating::class);
+    }
+
+
 }

@@ -14,3 +14,8 @@ if(close) {
         nav.classList.remove('active');
     })
 }
+
+
+$(document).ready(function() {
+  $('#myTable').DataTable();
+});

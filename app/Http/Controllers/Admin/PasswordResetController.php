@@ -13,15 +13,18 @@ use Illuminate\Support\Facades\Mail;
 
 class PasswordResetController extends Controller
 {
-    function showforgetpassword(){
+    function showforgetpassword()
+    {
         return view('admin.forgetpassword.forgetemail');
     }
 
-    function showcheckEmailVerificationCode(){
+    function showcheckEmailVerificationCode()
+    {
         return view('admin.forgetpassword.forgetotp');
     }
 
-    function showsetNewPassword(){
+    function showsetNewPassword()
+    {
         return view('admin.forgetpassword.confirm');
     }
 
@@ -33,10 +36,6 @@ class PasswordResetController extends Controller
             $check_user = User::where('email', $email)->exists();
 
             if (!$check_user) {
-                // return response([
-                //     'status' => 402,
-                //     'message' => 'Email does not exists',
-                // ]);
                 return back()->with('message', 'Email does not exists');
             }
             $token = rand(1000, 9999);
@@ -50,13 +49,11 @@ class PasswordResetController extends Controller
                 $message->subject('Reset Password');
             });
 
-            // return response([
-            //     'status' => 200,
-            //     'email' => $email,
-            //     'token' => $token,
-            //     'message' => 'We have email your password reset code',
-            // ]);
-            return redirect('/show-check-email-verification-code')->with('message1', 'OTP successfully sent');
+            return redirect('/show-check-email-verification-code')->with([
+                'message1' => 'OTP successfully sent',
+                'email' => $email,
+                'token' => $token
+            ]);
         } catch (Exception $err) {
             return back()->with('message', 'An error Occur');
             throw $err;
@@ -66,6 +63,8 @@ class PasswordResetController extends Controller
     // check Email Verification Code
     public function checkEmailVerificationCode(Request $request)
     {
+        $email = $request->email;
+        $token = $request->token;
         try {
             $check = DB::table('password_resets')
                 ->where([
@@ -75,24 +74,18 @@ class PasswordResetController extends Controller
                 ->first();
 
             if (!$check) {
-                // return response([
-                //     'status' => 403,
-                //     'message' => 'Not a valid email verification code',
-                // ]);
-                return back()->with('message', 'Not a valid OTP code');
+                session()->flash('message', 'Not a valid OTP code');
+                session()->flash('email', $email);
+                session()->flash('token', $token);
+                return back();
             }
 
-            // return response([
-            //     'status' => 200,
-            //     'message' => 'Valid email verification code',
-            // ]);
-                return redirect('/show-set-new-password')->with('message1', 'Valid OTP code');
+            return redirect('/show-set-new-password')->with([
+                'message1' => 'Valid OTP code',
+                'email' => $email,
+                'token' => $token
+            ]);
         } catch (Exception $err) {
-            // return response([
-            //     'status' => 401,
-            //     'message' => 'Cannot verify email verification code',
-            //     'error' => "error" . $err,
-            // ]);
             return back()->with('message', 'cannot verify OTP code');
             throw $err;
         }
@@ -101,22 +94,24 @@ class PasswordResetController extends Controller
     // set New Password
     public function setNewPassword(Request $request)
     {
+        $email = $request->email;
+        $token = $request->token;
         try {
             $password = $request->password;
             $confirm_password = $request->confirm_password;
 
             if ($password !== $confirm_password) {
-                return response([
-                    'status' => 402,
-                    'message' => "your password didn't match",
-                ]);
+                session()->flash('message', 'Password doesnot match');
+                session()->flash('email', $email);
+                session()->flash('token', $token);
+                return back();
             }
 
             if (mb_strlen($password) < 8) {
-                return response([
-                    'status' => 403,
-                    'message' => "Your password must be at least 8 characters",
-                ]);
+                session()->flash('message', 'Your password must be 8 character long');
+                session()->flash('email', $email);
+                session()->flash('token', $token);
+                return back();
             }
 
             $user = User::where('email', $request->email)
@@ -124,16 +119,10 @@ class PasswordResetController extends Controller
 
             DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-            return response([
-                'status' => 200,
-                'message' => 'Your password has been changed successfully',
-            ]);
+            return redirect('/login')->with('message1', 'Your password has been changed successfully');
         } catch (Exception $err) {
-            return response([
-                'status' => 401,
-                'message' => 'Cannot verify email verification code',
-                'error' => "error" . $err,
-            ]);
+            
+            return back()->with('message', 'Cannot verify email verification code');
             throw $err;
         }
     }

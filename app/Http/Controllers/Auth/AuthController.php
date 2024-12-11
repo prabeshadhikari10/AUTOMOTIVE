@@ -27,26 +27,25 @@ class AuthController extends Controller
         // check email
         $user = User::where('email', $fields['email'])->first();
 
-        // check password
-        if(!$user || !Hash::check($fields['password'], $user['password'])){
-            return back()->with('message', 'Invalid Credentials');
+        if(!$user){
+            return back()->with('message', 'Invalid Email');
         }
 
-        // $token = $user->createToken('myapptoken')->plainTextToken;
-
-        // return response([
-        //     'status' => 200,
-        //     'user' => $user,
-        //     'token' => $token
-        // ]);
+        // check password
+        if(!Hash::check($fields['password'], $user['password'])){
+            return back()->with('message', 'Invalid Password');
+        }
 
         if (Auth::attempt($fields)){
 
-            if(Auth::user()->role==1){
-                return redirect('/admin-dashboard');
+            if(Auth::user()->block==1){
+                return back()->with('message', 'Sorry! You are blocked from the system.');
+            }
+            elseif(Auth::user()->role==1){
+                return redirect('/admin-dashboard')->with('message1', 'Login successful');
             }
             elseif(Auth::user()->role==2){
-                return redirect('/userpage');
+                return redirect('/userpage')->with('message1', 'Login successful');
             }
         }
 
@@ -62,36 +61,20 @@ class AuthController extends Controller
     
             if($check_user)
             {
-                // return response([
-                //     'status' => 404,
-                //     'message' => 'This email address already exists'
-                // ]);
                 return back()->with('message', 'The email address already exists');
             }
            
             if(!filter_var($email, FILTER_VALIDATE_EMAIL))
             {
-                // return response([
-                //     'status' => 403,
-                //     'message' => 'Invalid email address'
-                // ]);
                 return back()->with('message', 'Invalid email address');
             }
     
             if($password != $confirm_password  )
             {
-                // return response([
-                //     'status' => 402,
-                //     'message' => "your password didn't match",
-                // ]);
                 return back()->with('message', 'Your password doesnot match');
             }
     
             if (mb_strlen($password) < 8 ){
-                // return response([
-                //     'status' => 405,
-                //     'message' => "Your password must be at least 8 characters",
-                // ]);
                 return back()->with('message', 'Your password must be at least 8 characters');
             }
     
@@ -100,11 +83,6 @@ class AuthController extends Controller
             $user->email = $request->email;
             $user->password = Hash::make($password);
             $user->save();
-    
-            // return response([
-            //     'status' => 200,
-            //     'message' => 'User registered successfully',
-            // ]);
             return redirect('/login')->with('message1', 'User Registered Successfully');
         }
 

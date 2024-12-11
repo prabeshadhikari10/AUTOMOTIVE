@@ -19,19 +19,11 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="/create-category" method="post">
+                            <form action="/create-category" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
                                     <input type="text" name="name" class="form-control" id="name">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <input type="text" name="description" class="form-control" id="description">
-                                </div>
-                                <div class="mb-3 form-check position-relative">
-                                    <input style="top:5px" class="position-absolute" type="checkbox" name="status" class="form-check-input" id="status">
-                                    <label class="form-check-label">Status</label>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Submit</button>
@@ -52,19 +44,11 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="/update-category/{{$c->id}}" method="post">
+                            <form action="/update-category/{{$c->id}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
                                     <input type="text" name="name" value="{{$c->name}}" class="form-control" id="name">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <input type="text" name="description" value="{{$c->description}}" class="form-control" id="description">
-                                </div>
-                                <div class="mb-3 form-check position-relative">
-                                    <input style="top:5px" class="position-absolute" type="checkbox" name="status" class="form-check-input" id="status" {{$c->status == '1' ? 'checked' : ''}}>
-                                    <label class="form-check-label">Status</label>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Submit</button>
@@ -104,8 +88,6 @@
                         <tr class="text-white">
                             <th scope="col">S.N.</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -114,8 +96,6 @@
                         <tr>
                             <td>{{$i}}</td>
                             <td>{{$c->name}}</td>
-                            <td>{{$c->description}}</td>
-                            <td>{{$c->status== '0' ? 'Visible':'Invisible'}}</td>
                             <td>
                                 <a class="btn btn-sm btn-primary menu-icon" data-bs-toggle="modal" data-bs-target="#editModal-{{$c->id}}" style="color:white;">
                                     <i class="fa-solid fa-pen-to-square"></i>

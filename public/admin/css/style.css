@@ -58,6 +58,7 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @-moz-keyframes flash {
   0% {
     opacity: 1;
@@ -8643,7 +8644,9 @@
   --bs-body-color: #000;
   --bs-body-bg: #fff;
 }
-
+*{
+  font-family: 'Poppins',sans-serif;
+}
 *,
 *::before,
 *::after {
@@ -8658,7 +8661,7 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-body-font-family);
+  font-family: 'Poppins',sans-serif;
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);

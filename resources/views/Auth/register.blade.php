@@ -11,6 +11,13 @@
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"> -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <style>
+    #myAlert {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+  </style>
 </head>
 
 <body>
@@ -21,7 +28,7 @@
   </div>
   @endif --> 
   @if(session()->has('message'))
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" id="myAlert">
     <strong>{{ session('message') }}</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -81,5 +88,13 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+<script>
+    $('#myAlert').alert(); // Show the alert
+
+    setTimeout(function() {
+      $('#myAlert').alert('close'); // Hide the alert
+    }, 3000); 
+  </script>
 
 </html>

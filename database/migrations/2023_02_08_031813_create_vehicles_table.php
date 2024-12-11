@@ -20,13 +20,18 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('image')->nullable();
             $table->integer('price');
-            $table->integer('seat_capacity');
+            $table->string('wheels');
             $table->string('fuel');
             $table->string('engine');
+            $table->string('description');
+            $table->string('vehicle_no');
+            $table->string('location');
+            $table->string('driver_stat');
             $table->integer('status')->default('0')->comment('0=visible, 1=hidden');
             $table->integer('trending')->default('0')->comment('0=not-trending, 1=trending');
-            $table->unsignedBigInteger('brand_id');
-            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->string('brand');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

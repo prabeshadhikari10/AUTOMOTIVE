@@ -3,33 +3,33 @@
 @section('content')
 
 <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="d-flex justify-content-between flex-wrap">
-                <div class="d-flex align-items-end flex-wrap">
-                  <div class="me-md-3 me-xl-5">
-                    <h2>Welcome back,</h2>
-                    <p class="mb-md-0">Your analytics dashboard template.</p>
-                  </div>
-                  <div class="d-flex">
-                    <i class="mdi mdi-home text-muted hover-cursor"></i>
-                    <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                    <p class="text-primary mb-0 hover-cursor">Analytics</p>
-                  </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-end flex-wrap">
-                  <button type="button" class="btn btn-light bg-white btn-icon me-3 d-none d-md-block ">
-                    <i class="mdi mdi-download text-muted"></i>
-                  </button>
-                  <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
-                    <i class="mdi mdi-clock-outline text-muted"></i>
-                  </button>
-                  <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
-                    <i class="mdi mdi-plus text-muted"></i>
-                  </button>
-                  <button class="btn btn-primary mt-2 mt-xl-0">Generate report</button>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="col-md-12 grid-margin" style="display:flex; justify-content:center; align-items:center;">
+    <div class="col-md-8 order-md-1" style="box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); border-radius:15px; width:95%; height:78vh;  padding:30px; background-color:#f8f9fa;">
+      <h2 class="ml-3">Admin Dashboard</h2>
+      <div class="d-flex justify-content-between align-items-center mt-5 text-white">
+        <div class="d-flex justify-content-between align-items-center  ml-3 p-5 center shadow-lg bg-danger" style="width: 250px; height: 150px; border-radius:20px;">
+          <span style="font-size: 60px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <span style="font-size: 40px;"><i class="fa-solid fa-user"></i></span>
+        <span style="font-size: 17px;">Users</span>
+        </span>
+          <span style="font-size: 60px;">{{$users}}</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center ml-5 p-5 center shadow-lg bg-primary" style="width: 250px; height: 150px; border-radius:20px;">
+          <span style="font-size: 60px; display:flex; flex-direction:column; justify-content:center; align-items:center;"><span style="font-size: 40px;"><i class="fa-solid fa-user-check"></i></span><span style="font-size: 17px;">Verified User</span></span>
+          <span style="font-size: 60px;">{{$user1}}</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center ml-3 p-5 center shadow-lg bg-warning" style="width: 250px; height: 150px; border-radius:20px;">
+          <span style="font-size: 60px; display:flex; flex-direction:column; justify-content:center; align-items:center;"><span><i class="fa-solid fa-bicycle"></i></span><span style="font-size: 17px;">Rent</span></span>
+          <span style="font-size: 60px;">{{$booking}}</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center ml-3 p-5 mr-3 center shadow-lg bg-success" style="width: 250px; height: 150px; border-radius:20px;">
+          <span style="font-size: 60px; display:flex; flex-direction:column; justify-content:center; align-items:center;"><span><i class="fa-solid fa-car"></i></span><span style="font-size: 17px;">Vehicle</span></span>
+          <span style="font-size: 60px;">{{$vehicle}}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 @endsection

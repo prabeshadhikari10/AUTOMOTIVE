@@ -175,9 +175,9 @@
                                 <a data-bs-toggle="modal" data-bs-target="#completed-{{$b->id}}" class="btn btn-sm btn-primary menu-icon addMore" type="button" title="Completed" style="color:white;">
                                     <i class="fa-solid fa-circle-check"></i>
                                 </a>
-                                <a href="/chatify/{{$b->user_id}}" class="btn btn-sm btn-primary menu-icon addMore" type="button" title="chat" style="color:white;">
+                                <!-- <a href="/chatify/{{$b->user_id}}" class="btn btn-sm btn-primary menu-icon addMore" type="button" title="chat" style="color:white;">
                                     <i class="fa-solid fa-message"></i>
-                                </a>
+                                </a> -->
                             </td>
 
                             @else

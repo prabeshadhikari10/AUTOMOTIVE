@@ -276,7 +276,7 @@
                     <div style="display: flex; justify-content:start; align-items:center;">
                         <span class="title-font font-medium text-2xl mr-5 text-gray-900">Rs. {{$booking->total_price}}</span>
                         <button class="btn px-3 py-2" data-toggle="modal" data-target="#pay-{{$booking->id}}" style="font-size: 17px;">Cash in hand</button>
-                        <button class="ml-2" id="payment-button"><img src="https://dao578ztqooau.cloudfront.net/static/img/logo1.png" alt="khalti" style="width:130px;"></button>
+                        <!-- <button class="ml-2" id="payment-button"><img src="https://dao578ztqooau.cloudfront.net/static/img/logo1.png" alt="khalti" style="width:130px;"></button> -->
 
 
                         </button>

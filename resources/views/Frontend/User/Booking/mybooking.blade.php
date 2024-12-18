@@ -129,9 +129,9 @@
                             <td>{{$b->price}}</td>
                             <td>{{$b->total_price}}</td>
                             <td>
-                                <!-- <a href="/chatify/{{$b->vehicle->user_id}}" class="btn btn-sm btn-primary menu-icon addMore" type="button" title="chat" style="color:white;">
+                                <a href="/chatify/{{$b->vehicle->user_id}}" class="btn btn-sm btn-primary menu-icon addMore" type="button" title="chat" style="color:white;">
                                     <i class="fa-solid fa-message"></i>
-                                </a> -->
+                                </a>
                                 <a data-bs-toggle="modal" data-bs-target="#decline-{{$b->id}}" class="btn btn-sm btn-danger menu-icon addMore" type="button" title="Cancel Booking" style="color:white;">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                 </a>
